@@ -1,0 +1,41 @@
+<h1>Index#detail</h1>
+<p>Find me in app/views/index/detail.html.erb</p>
+<form method="post" action="/save">
+  <% flash.each do |key, value| %>
+      <p><%= content_tag(:div, value, class: "#{key}") %></p>
+  <% end %>
+<table class="table table-bordered table-striped table-hover">
+  <tbody>
+      <% if !@user.id.nil? %>
+      <tr>
+        <th>ID</th><td><%= @user.id %>
+        <%= hidden_field :user, :id %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <th>Name</th><td><%= text_field :user, :name, :size => '50' %></td>
+      </tr>
+      <tr>
+        <th>sex</th>
+        <td>
+          <% @sexes.each do |key, sex| %>
+              <%= label :user, 'sex_' + sex, key %>
+              <%= radio_button 'user', 'sex', sex, {} %>
+          <% end %>
+        </td>
+      </tr>
+      <% if !@user.id.nil? %>
+      <tr>
+        <th>Created</th><td><%= @user.created_at %></td>
+      </tr>
+      <tr>
+        <th>Updated</th><td><%= @user.updated_at %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+<div>
+  <%= button_to "登録", {:action => "save"}, {'class' => 'btn btn-primary', 'style' => 'float:left;'} %>
+  <%= link_to "戻る", {:action => "index"}, {'class' => 'btn btn-default', 'style' => 'float:left; margin-left: 10px;'} %>
+</div>
+</form>

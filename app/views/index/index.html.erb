@@ -1,0 +1,28 @@
+<h1>Index#index</h1>
+<h2><%= Settings.my_name %></h2>
+<p>Find me in app/views/index/index.html.erb</p>
+<p><%= link_to "新規登録", {:action => "detail"}, {'class' => 'btn btn-primary'} %></p>
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Created</th>
+      <th>Updated</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.sex %></td>
+      <td><%= user.created_at %></td>
+      <td><%= user.updated_at %></td>
+      <td><%= link_to "編集", {:action => "detail", :id => user.id}, {'class' => 'btn btn-primary'} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
